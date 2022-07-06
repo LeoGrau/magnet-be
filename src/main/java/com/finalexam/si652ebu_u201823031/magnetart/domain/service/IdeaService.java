@@ -12,5 +12,7 @@ public interface IdeaService {
 
     List<IdeaResource> getIdeasByInitialSamples(int initialSamples);
 
-    List<IdeaResource> getAllIdeas(int ideaId);
+    List<IdeaResource> getAllIdeas();
+
+    IdeaResource createNewIdea(IdeaResource ideaResource);
 }

@@ -6,10 +6,12 @@ import com.finalexam.si652ebu_u201823031.magnetart.domain.service.IdeaService;
 import com.finalexam.si652ebu_u201823031.magnetart.mapping.IdeaMapper;
 import com.finalexam.si652ebu_u201823031.magnetart.resource.IdeaResource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class IdeaResourceServiceImpl implements IdeaService {
 
     @Autowired
@@ -35,8 +37,14 @@ public class IdeaResourceServiceImpl implements IdeaService {
     }
 
     @Override
-    public List<IdeaResource> getAllIdeas(int ideaId) {
+    public List<IdeaResource> getAllIdeas() {
         List<IdeaEntity> ideaEntities = (List<IdeaEntity>) ideaEntityRepository.findAll();
         return ideaMapper.IdeaEntitiesToIdeaResources(ideaEntities);
+    }
+
+    @Override
+    public IdeaResource createNewIdea(IdeaResource ideaResource) {
+        IdeaEntity ideaEntity = ideaMapper.IdeaResourceToIdeaEntity(ideaResource);
+        return ideaMapper.IdeaEntityToIdeaResource(ideaEntityRepository.save(ideaEntity));
     }
 }

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Embeddable
@@ -12,6 +13,7 @@ public class IdeaPKEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long authorId;
 
+    @NotBlank
     @Column(name = "text_query")
     private String textQuery;
 
